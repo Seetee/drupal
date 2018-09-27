@@ -2,7 +2,7 @@
 FROM ubuntu:latest 
 
 # This is me...
-LABEL maintainer="docker@frantzen.se"
+LABEL maintainer="https://github.com/seetee/"
 
 # Make sure we are up to date
 RUN apt-get update && \
@@ -41,8 +41,8 @@ RUN rm -rf /var/www/html/*
 RUN composer create-project drupal-composer/drupal-project:8.x-dev /var/www/html --stability dev --no-interaction && \
     cd /var/www/html && \
     composer require drush/drush && \
-    composer require drupal/devel:~1.0
-#    composer require alchemy/zippy && \
+    composer require drupal/devel:~1.0 && \
+    composer require drupal/console:~1.0 --prefer-dist --optimize-autoloader
 
 # The ports that are exposed
 EXPOSE 80/tcp
